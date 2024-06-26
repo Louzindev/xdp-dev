@@ -12,3 +12,6 @@ XDP? Bom, xdp é o caminho expresso de dados, onde os dados chegam, então você
 
 ### prog1
 É uma aplicação XDP, que busca "brincar" com ataques TCP Syn... a minha primeira aplicação eBPF usando a seção XDP
+
+### Long time ago...
+Talvez eu volte a implementar esse "documentario" quando eu começar a implementar alguns projetos que necessitem da tecnologia.
