@@ -24,7 +24,7 @@ Nesse projeto, atualmente me foi passada a função de manter e atualizar um fil
 O filtro estava usando uma versão antiga e depreciada do LIBBPF, então a primeira coisa que eu fiz foi atualizar ela e junto fazer um loader em C++, que carrega e atualiza as regras de firewall de acordo com os comandos passados a ele.
 
 Uma outra tarefa importante, foi o redirecionamento de pacotes UDP relacionados com "Query" de algumas aplicações para servidores proxy. para fazer isso, eu utilizei um truque do proprio XDP e um mapa.
-Primeiramente eu armazeno as informações de um servidor proxy, como IP, Porta, Endereço MAC e o tipo de aplicação que ele vai responder. Feito isso, quando um pacote query chega no firewall eu pego o pacote, altero o endereço mac de destino, endereço IP de destino do pacote, e também a porta no cabeçalho UDP ( não esquecendo de recalcular o checksum ), agora vem a magica... é só usar a xdp_action XDP_TX, que faz o pacote ser retransmitido. Dessa forma eu redireciono o pacote ao proxy, que vai fazer seu travalho de responder o cliente.
+Primeiramente eu armazeno as informações de um servidor proxy, como IP, Porta, Endereço MAC e o tipo de aplicação que ele vai responder. Feito isso, quando um pacote query chega no firewall eu pego o pacote, altero o endereço mac de destino, endereço IP de destino do pacote, e também a porta no cabeçalho UDP ( não esquecendo de recalcular o checksum ), agora vem a magica... é só usar a xdp_action XDP_TX, que faz o pacote ser retransmitido. Dessa forma eu redireciono o pacote ao proxy, que vai fazer seu trabalho de responder o cliente.
 
 ```c
 
