@@ -13,5 +13,18 @@ XDP? Bom, xdp é o caminho expresso de dados, onde os dados chegam, então você
 ### prog1
 É uma aplicação XDP, que busca "brincar" com ataques TCP Syn... a minha primeira aplicação eBPF usando a seção XDP
 
+### 28/01/2025
+Se passou um longo tempo desde a ultima atualização, Porém, não de outros projetos...
+
+Bom, esse tempo eu estudei estruturas e mais coisa sobre varias stacks, principalmente sobre o desenvolvimento com eBPF.
+
+Pude aproveitar e finalmente colocar meus conhecimentos com o eBPF em pratica em uma empresa surgindo com meus amigos, a TrustEdge.
+
+Nesse projeto, atualmente me foi passada a função de manter e atualizar um filtro legado, com filtro de aplicações especificas e varios protocolos.
+O filtro estava usando uma versão antiga e depreciada do LIBBPF, então a primeira coisa que eu fiz foi atualizar ela e junto fazer um loader em C++, que carrega e atualiza as regras de firewall de acordo com os comandos passados a ele.
+
+Uma outra tarefa importante, foi o redirecionamento de pacotes UDP relacionados com "Query" de algumas aplicações para servidores proxy. para fazer isso, eu utilizei um truque do proprio XDP e um mapa.
+Primeiramente eu armazeno as informações de um servidor proxy, como IP, Porta, Endereço MAC e o tipo de aplicação que ele vai responder. Feito isso, quando um pacote query chega no firewall eu pego o pacote, altero o endereço mac de destino, endereço IP de destino do pacote, e também a porta no cabeçalho UDP, agora vem a magica... é só usar a xdp_action XDP_TX, que faz o pacote ser retransmitido. Dessa forma eu redireciono o pacote ao proxy, que vai fazer seu travalho de responder o cliente.
+
 ### Long time ago...
 Talvez eu volte a implementar esse "documentario" quando eu começar a implementar alguns projetos que necessitem da tecnologia.
