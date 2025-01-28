@@ -54,5 +54,3 @@ proxy_redirect(eth, iph, udph, data_end, type);
 return XDP_TX;
 ```
 
-### Long time ago...
-Talvez eu volte a implementar esse "documentario" quando eu começar a implementar alguns projetos que necessitem da tecnologia.
